@@ -7,6 +7,7 @@ module Blink #(
 );
 
 localparam ONE_SECOND  = CLK_FREQ;
+localparam TWO_SECOND  = 2*CLK_FREQ;
 localparam HALF_SECOND = CLK_FREQ / 2;
 
 reg [31:0] counter;
@@ -16,9 +17,15 @@ always @(posedge clk ) begin
         counter <= 32'h0;
         leds     <= 8'b0;
     end else begin
-        if (counter >= HALF_SECOND - 1) begin
+        if (counter >= TWO_SECOND - 1) begin
             counter <= 32'h0;
-            leds[0]     <= ~leds[0];
+            leds[0] <= ~leds[0]; 
+            leds[1] <= ~leds[1]; 
+            leds[2] <= ~leds[2]; 
+            leds[3] <= ~leds[3]; 
+            leds[4] <= ~leds[4]; 
+            leds[5] <= ~leds[5]; 
+            leds[6] <= ~leds[6]; 
         end 
         else begin
             counter <= counter + 1;
